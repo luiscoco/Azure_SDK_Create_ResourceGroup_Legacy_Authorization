@@ -13,6 +13,8 @@ az ad sp create-for-rbac --name "myserviceprincipal" ^
 
 We navigate to Azure **Microsoft Entra ID**
 
+![image](https://github.com/luiscoco/Azure_SDK_Create_ResourceGroup_Legacy_Authorization/assets/32194879/024bd812-9804-42d7-996d-50647bdbc204)
+
 First we get the **Tenant ID**
 
 ![image](https://github.com/luiscoco/Azure_SDK_Create_ResourceGroup_Legacy_Authorization/assets/32194879/e5784699-9270-4021-a461-60fc283e7324)
