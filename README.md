@@ -34,7 +34,41 @@ We copy the **clientId** and (optionally) you can also get from here the **tenan
 ## 2. Input the application source code
 
 ```csharp
+using Microsoft.Azure.Management.ResourceManager;
+using Microsoft.Azure.Management.ResourceManager.Models;
+using Microsoft.Rest.Azure.Authentication;
 
+namespace AzureResourceGroupCreation
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Replace these variables with your own values
+            string clientId = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            string clientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            string tenantId = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            string subscriptionId = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            string resourceGroupName = "myresourcegroupluiscocoenriquez";
+            string location = "westeurope"; // e.g., "westus"
+
+            // Authenticate with Azure
+            var serviceClientCredentials = ApplicationTokenProvider.LoginSilentAsync(tenantId, clientId, clientSecret).Result;
+
+            // Initialize the resource management client
+            var resourceManagementClient = new ResourceManagementClient(serviceClientCredentials)
+            {
+                SubscriptionId = subscriptionId
+            };
+
+            // Create the resource group
+            var resourceGroup = new ResourceGroup { Location = location };
+            resourceGroup = resourceManagementClient.ResourceGroups.CreateOrUpdate(resourceGroupName, resourceGroup);
+
+            System.Console.WriteLine("Resource group created: " + resourceGroup.Name);
+        }
+    }
+}
 ```
 
 
