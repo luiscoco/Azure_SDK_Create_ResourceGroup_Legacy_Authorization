@@ -33,6 +33,24 @@ We copy the **clientId** and (optionally) you can also get from here the **tenan
 
 ## 2. Input the application source code
 
+Open VSCode and create a new C# application with this command:
+
+```
+dotnet new console --framework net8.0
+```
+
+Add the dependencies with the commands:
+
+```
+dotnet add package Microsoft.Azure.Management.ResourceManager --version 3.17.4-preview
+```
+
+```
+dotnet add package Microsoft.Rest.Azure.Authentication
+```
+
+Input the C# source code for creating a new Azure ResourceGroup with Azure SDK for .NET
+
 ```csharp
 using Microsoft.Azure.Management.ResourceManager;
 using Microsoft.Azure.Management.ResourceManager.Models;
