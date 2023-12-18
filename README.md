@@ -1,4 +1,4 @@
-# Azure SDK Create ResourceGroup (Application Registration)
+# Azure SDK for .NET: how to create a ResourceGroup (Application Registration)
 
 ## 1. Register the application in Microsoft Entra ID
 
