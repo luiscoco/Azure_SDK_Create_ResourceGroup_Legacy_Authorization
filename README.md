@@ -25,11 +25,19 @@ We enter **Microsoft Entra ID** and we click on **App registrations**
 
 We click on the "myserviceprincipal", the service principal we created at the begining of this section 2
 
-We copy the **clientId** and (optionally) you can also get from here the **tenantId**
+We copy the **clientId** and (optionally) you can also get from here the **tenantId**, we paste both values in the application variables **clientId** and **tenantId**
 
 ![image](https://github.com/luiscoco/Azure_SDK_Create_ResourceGroup_Legacy_Authorization/assets/32194879/d513cb7c-14f7-4c26-8df1-595c3dd41963)
 
+We create a new secret clicking on Client credentials link
 
+![image](https://github.com/luiscoco/Azure_SDK_Create_ResourceGroup_Legacy_Authorization/assets/32194879/01c48b28-ec72-4200-80dd-55d1e3e56084)
+
+We press in the **New client secret** button
+
+![image](https://github.com/luiscoco/Azure_SDK_Create_ResourceGroup_Legacy_Authorization/assets/32194879/83c1c8e8-cf0c-491d-9116-cd6933eff4a3)
+
+We copy the **Secret** value to paste in the application **clientSecret** variable 
 
 ## 2. Input the application source code
 
