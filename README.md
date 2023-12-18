@@ -39,6 +39,12 @@ We press in the **New client secret** button
 
 We copy the **Secret** value to paste in the application **clientSecret** variable 
 
+We navigate in Azure Portal to the **Subscriptions** service and we copy the subscription  subscriptionId 
+
+![image](https://github.com/luiscoco/Azure_SDK_Create_ResourceGroup_Legacy_Authorization/assets/32194879/4cd4bad9-fb70-4e33-9a53-857146eddd5b)
+
+![image](https://github.com/luiscoco/Azure_SDK_Create_ResourceGroup_Legacy_Authorization/assets/32194879/e1384059-1c7a-4930-856a-5f2466cf75bd)
+
 ## 2. Input the application source code
 
 Open VSCode and create a new C# application with this command:
