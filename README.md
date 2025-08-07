@@ -154,6 +154,9 @@ namespace AzureResourceGroupCreation
 }
 ```
 
+## 5. We run the application in VSCode
+
+<img width="1919" height="641" alt="image" src="https://github.com/user-attachments/assets/cffd232f-e90e-4a18-9c56-bee99c852ff6" />
 
 
 
