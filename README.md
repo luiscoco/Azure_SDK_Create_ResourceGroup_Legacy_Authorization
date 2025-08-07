@@ -45,7 +45,21 @@ We navigate in Azure Portal to the **Subscriptions** service and we copy the sub
 
 ![image](https://github.com/luiscoco/Azure_SDK_Create_ResourceGroup_Legacy_Authorization/assets/32194879/e1384059-1c7a-4930-856a-5f2466cf75bd)
 
-## 2. Input the application source code
+## 2. We assign the Contributor role to the Application
+
+<img width="1919" height="878" alt="image" src="https://github.com/user-attachments/assets/06b2ba51-d0dd-4a7c-942c-eccd04d8fa24" />
+
+## 3. We assign the Contributor role to the Subscription
+
+<img width="1916" height="905" alt="image" src="https://github.com/user-attachments/assets/802f4ea8-281c-4696-98b6-03cd23c7d27c" />
+
+<img width="1919" height="902" alt="image" src="https://github.com/user-attachments/assets/d795bd8a-e621-4af1-93d2-555317e07076" />
+
+<img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/2a5729f1-868e-4ca4-b8fb-0945242ad86b" />
+
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/d754689e-700a-4553-8114-ffb371ced3eb" />
+
+## 4. Input the application source code
 
 Open VSCode and create a new C# application with this command:
 
