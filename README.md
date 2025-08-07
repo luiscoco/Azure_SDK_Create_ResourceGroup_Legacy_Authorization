@@ -158,5 +158,8 @@ namespace AzureResourceGroupCreation
 
 <img width="1919" height="641" alt="image" src="https://github.com/user-attachments/assets/cffd232f-e90e-4a18-9c56-bee99c852ff6" />
 
+## 6. We confirm in Azure Portal we created a new ResourceGroup
+
+<img width="1919" height="442" alt="image" src="https://github.com/user-attachments/assets/e5c2c256-f260-4347-a135-1214961c8634" />
 
 
