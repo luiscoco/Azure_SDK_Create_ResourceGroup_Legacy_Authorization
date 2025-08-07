@@ -64,57 +64,96 @@ We navigate in Azure Portal to the **Subscriptions** service and we copy the sub
 Open VSCode and create a new C# application with this command:
 
 ```
-dotnet new console --framework net8.0
+dotnet new console --framework net10.0
 ```
 
 Add the dependencies with the commands:
 
 ```
-dotnet add package Microsoft.Azure.Management.ResourceManager --version 3.17.4-preview
+dotnet add package Azure.Identity
 ```
 
 ```
-dotnet add package Microsoft.Rest.Azure.Authentication
+dotnet add package Azure.ResourceManager
+```
+
+```
+dotnet add package Azure.ResourceManager.Storage
+```
+
+We review the csproj file to see the added libraries
+
+```csproj
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.14.2" />
+    <PackageReference Include="Azure.ResourceManager" Version="1.13.2" />
+    <PackageReference Include="Azure.ResourceManager.Storage" Version="1.4.4" />
+  </ItemGroup>
+
+</Project>
 ```
 
 Input the C# source code for creating a new Azure ResourceGroup with Azure SDK for .NET
 
 ```csharp
-using Microsoft.Azure.Management.ResourceManager;
-using Microsoft.Azure.Management.ResourceManager.Models;
-using Microsoft.Rest.Azure.Authentication;
-
 namespace AzureResourceGroupCreation
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            // Replace these variables with your own values
-            string clientId = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-            string clientSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-            string tenantId = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-            string subscriptionId = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-            string resourceGroupName = "myresourcegroupluiscocoenriquez";
-            string location = "westeurope"; // e.g., "westus"
+            // Replace with your Azure AD application details
+            string clientId = "dda9be61-XXXXXXXX";
+            string clientSecret = "2FR8Q~XXXXXXXXXXXX";
+            string tenantId = "e099cebd-XXXXXXXXXXXXXXXXXX";
+            string subscriptionId = "e5bd93f3-XXXXXXXXXXXXXXXXXXX";
 
-            // Authenticate with Azure
-            var serviceClientCredentials = ApplicationTokenProvider.LoginSilentAsync(tenantId, clientId, clientSecret).Result;
+            string resourceGroupName = "myNewRGLuis";
+            string location = "westeurope";
 
-            // Initialize the resource management client
-            var resourceManagementClient = new ResourceManagementClient(serviceClientCredentials)
+            try
             {
-                SubscriptionId = subscriptionId
-            };
+                // Authenticate using ClientSecretCredential
+                var credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
 
-            // Create the resource group
-            var resourceGroup = new ResourceGroup { Location = location };
-            resourceGroup = resourceManagementClient.ResourceGroups.CreateOrUpdate(resourceGroupName, resourceGroup);
+                // Initialize the ARM client
+                ArmClient armClient = new ArmClient(credential, subscriptionId);
 
-            System.Console.WriteLine("Resource group created: " + resourceGroup.Name);
+                // Get the subscription
+                SubscriptionResource subscription = await armClient.GetDefaultSubscriptionAsync();
+
+                // Define the resource group parameters
+                ResourceGroupData resourceGroupData = new ResourceGroupData(location);
+
+                // Create the resource group
+                ResourceGroupCollection resourceGroups = subscription.GetResourceGroups();
+                ArmOperation<ResourceGroupResource> operation = await resourceGroups.CreateOrUpdateAsync(
+                    WaitUntil.Completed,
+                    resourceGroupName,
+                    resourceGroupData
+                );
+
+                ResourceGroupResource result = operation.Value;
+                Console.WriteLine($"✅ Resource group created: {result.Data.Name} in {result.Data.Location}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error: {ex.Message}");
+            }
         }
     }
 }
 ```
+
+
 
 
